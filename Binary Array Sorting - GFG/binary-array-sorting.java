@@ -55,29 +55,25 @@ class Sorting
 class Solution
 {
     //Function to sort the binary array.
-    static void binSort(int A[], int N)
+    static void binSort(int A[], int n)
     {
-          int left = 0; // Initialize the left pointer
-        int right = N - 1; // Initialize the right pointer
-
-        while (left < right) {
-            // Move the left pointer to the right while A[left] is 0
-            while (A[left] == 0 && left < right) {
-                left++;
-            }
-
-            // Move the right pointer to the left while A[right] is 1
-            while (A[right] == 1 && left < right) {
-                right--;
-            }
-
-            // If left is less than right, swap A[left] and A[right]
-            if (left < right) {
-                A[left] = 0;
-                A[right] = 1;
-                left++;
-                right--;
+        int count=0;
+        for(int i=0;i<n;i++)
+        { if(A[i]==0){
+            count++;// count how 
+        }
+        
+        }
+        for(int i=0;i<count;i++)
+        {
+            A[i]=0;
+        }
+          for(int i=count;i<n;i++)
+          {
+              A[i]=1;
+          }
+        
+        
     }
 }
-}
-}
+
