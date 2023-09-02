@@ -1,18 +1,25 @@
+
 class Solution {
     public int minExtraChar(String s, String[] dictionary) {
-        int[] dp = new int[51]; // Initialize an array to store the minimum extra characters.
+        Set<String> dict = new HashSet<>();
+        for (String word : dictionary) {
+            dict.add(word);
+        }
+
         int n = s.length();
+        int[] dp = new int[n + 1];
 
-        for (int i = n - 1; i >= 0; --i) {
-            dp[i] = 1 + dp[i + 1]; // Initialize with one extra character.
+        for (int i = 1; i <= n; i++) {
+            dp[i] = dp[i - 1] + 1;
 
-            for (String w : dictionary) {
-                if (i + w.length() <= n && s.substring(i, i + w.length()).equals(w)) {
-                    dp[i] = Math.min(dp[i], dp[i + w.length()]); // Update if a word in the dictionary is found.
+            for (int j = i - 1; j >= 0; j--) {
+                String substring = s.substring(j, i);
+                if (dict.contains(substring)) {
+                    dp[i] = Math.min(dp[i], dp[j]);
                 }
             }
         }
 
-        return dp[0]; // Return the minimum extra characters for the entire string.
+        return dp[n];
     }
 }
